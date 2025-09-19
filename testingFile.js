@@ -1,10 +1,8 @@
-const num1 = 1;
-const num2 = 2;
-const num3 = 3;
-let largestNumber;
-largestNumber = (num1 > num2 && num1 > num3);
-console.log(largestNumber);
-largestNumber = (num2 > num1 && num2 > num3);
-console.log(largestNumber);
-largestNumber = (num3 > num1 && num3 > num2);
-console.log(largestNumber);
+let num1 = 1;
+let num2 = 2;
+let num3 = 3;
+const template = num1;
+num1 = num2;
+num2 = num3;
+num3 = template
+console.log(num1,num2,num3);
