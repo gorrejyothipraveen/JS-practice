@@ -1,2 +1,3 @@
-const number = 1;
-console.log("sum of",number,"is",1);
+const number = 2;
+const sum = 1 + number;
+console.log("sum of",number,"is",sum);
