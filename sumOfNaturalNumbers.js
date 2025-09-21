@@ -1,3 +1,3 @@
-const number = 2;
-const sum = 1 + number;
+const number = 3;
+const sum = number - 2 + number - 1 + number;
 console.log("sum of",number,"is",sum);
