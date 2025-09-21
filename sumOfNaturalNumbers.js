@@ -1,3 +1,24 @@
-const number = 3;
-const sum = number - 2 + number - 1 + number;
-console.log("sum of",number,"is",sum);
+let number = 5;
+const originalNumber = number;
+let sum = 0;
+ if (number > 0) {
+  sum = sum + number;
+  number = number - 1;
+}
+if (number > 0) {
+  sum = sum + number;
+  number = number - 1;
+}
+if (number > 0) {
+  sum = sum + number;
+  number = number - 1;
+}
+if (number > 0) {
+  sum = sum + number;
+  number = number - 1;
+}
+if (number > 0) {
+  sum = sum + number;
+  number = number - 1;
+}
+console.log("sum of",originalNumber,"is  : ",sum);
