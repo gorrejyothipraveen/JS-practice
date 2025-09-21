@@ -1,21 +1,37 @@
-const string = "Z  L"
+const string = "L  Z  L   Z   L  Z";
 let positionOfLion;
 let positionOfZebra;
-let i = 0;
-while ( i < string.length ) {
+let distanceBetweenLandZ;
+let shortestDistance;
+let flagForLionPosition = 0;
+let flagForZebraPosition = 0;
+for ( let i = 0 ; i < string.length ; i = i+1 ) {
   if( string[i] === 'L') {
     positionOfLion = i;
-    console.log("lion",positionOfLion);
+    flagForLionPosition = flagForLionPosition + 1;
   }
-  i = i+1;
-}
-i = 0;
-while ( i < string.length ) {
+  
   if( string[i] === 'Z') {
     positionOfZebra = i;
-    console.log("zebra",positionOfZebra);
+    flagForZebraPosition = flagForZebraPosition + 1;
   }
-  i = i+1;
+
+  if( flagForLionPosition === 1 && flagForZebraPosition === 1 || flagForLionPosition >= 1 && flagForZebraPosition === 1 || flagForLionPosition === 1 && flagForZebraPosition >= 1) {
+    distanceBetweenLandZ =( positionOfLion - positionOfZebra < 0 )? -(positionOfLion - positionOfZebra) : positionOfLion - positionOfZebra ;
+  }
+   
+  if( flagForLionPosition >= 1 && flagForZebraPosition >= 1 ) {
+    shortestDistance = ( positionOfLion - positionOfZebra < 0 )? -(positionOfLion - positionOfZebra) : positionOfLion - positionOfZebra ;
+    if( shortestDistance < distanceBetweenLandZ ) {
+      distanceBetweenLandZ = shortestDistance;
+    }
+  }
 }
-const DistanceBetweenLandZ =( positionOfLion - positionOfZebra < 0 )? -(positionOfLion - positionOfZebra) : positionOfLion - positionOfZebra ;
-console.log("the distance between",string,"is :",DistanceBetweenLandZ - 1);
+
+if( flagForLionPosition < 1 || flagForZebraPosition < 1) {
+  console.log(-1);
+} else {
+  distanceBetweenLandZ = distanceBetweenLandZ - 1;
+  console.log("the distance between",string,"is :",distanceBetweenLandZ);
+}
+
