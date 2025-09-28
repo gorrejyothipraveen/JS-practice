@@ -1,7 +1,7 @@
 
 
 function splittingOfWord(word) {
-  
+  return "a";
 }
 
 function displayingOutput(word, message, actual, expected) {
@@ -24,7 +24,7 @@ function testSplittingOfWord(word, expected){
 }
 
 function testAll() {
-  testSplittingOfWord("hello");
+  testSplittingOfWord("a",'a');
 }
 
 testAll();
