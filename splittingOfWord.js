@@ -26,6 +26,10 @@ function testSplittingOfWord(word, expected){
 function testAll() {
   testSplittingOfWord("a", 'a');
   testSplittingOfWord("b", "b");
+  testSplittingOfWord("ab", "ab");
+  testSplittingOfWord("ba", "ba");
+
+
 }
 
 testAll();
