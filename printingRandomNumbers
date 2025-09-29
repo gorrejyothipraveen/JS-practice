@@ -1,6 +1,11 @@
-const start = 0;
-const end = 10;
-let  randomNumber = Math.floor(Math.random() * end);
+const start = 4;
+const end = 12;
+const range = 1000;
+let  randomNumber = Math.floor(Math.random() * range);
+
+while (randomNumber < start || randomNumber > end) {
+  randomNumber = Math.floor(Math.random() * range);
+}
 
 console.log(randomNumber);
 
