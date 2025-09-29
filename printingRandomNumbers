@@ -1,0 +1,7 @@
+const start = 0;
+const end = 10;
+let  randomNumber = Math.floor(Math.random() * end);
+
+console.log(randomNumber);
+
+
