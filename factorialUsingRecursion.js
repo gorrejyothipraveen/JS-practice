@@ -1,5 +1,10 @@
 function factorial(number) {
-  return 1;
+
+  if (number === 1) {
+    return number;
+  }
+
+  return number * factorial(number - 1);
 }
 
 function displayingOutput(message, number, actual, expected) {
@@ -23,6 +28,8 @@ function testFactorial(number, expected) {
 function testAll() {
 
   testFactorial(1, 1);
+  testFactorial(5, 120);
+  testFactorial(3, 6);
   
 }
 
