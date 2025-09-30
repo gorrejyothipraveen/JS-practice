@@ -1,7 +1,19 @@
 //printing even numbers using recursion
+function findingEvenNumbersInRange(number, evenString) {
+  
+  if (number % 2 === 0 && number >= 0) {
+    evenString = number + ' ' + evenString;
+  }
+
+  if (number < 0) {
+    return evenString;
+  }
+
+  return findingEvenNumbersInRange(number - 1, evenString);
+}
 
 function printEvenNumbers(number) {
-   return "0 2";
+  return findingEvenNumbersInRange(number, '');
 }
 
 function displayingOutput(message, sentence, actual, expected) {
@@ -18,13 +30,14 @@ function symbol(actual, expected) {
 
 function testPrintEvenNumbers(sentence, expected) {
   const actual = printEvenNumbers(sentence);
-  const message = symbol(actual, expected);
+  const message = symbol(actual, expected + " ");
   displayingOutput(message, sentence, actual, expected);
 }
 
 function testAll() {
 
   testPrintEvenNumbers(2, "0 2");
+  testPrintEvenNumbers(4, "0 2 4");
 
 }
 
