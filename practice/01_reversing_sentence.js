@@ -72,7 +72,7 @@ function testAll() {
   testReversingSentence("single word ", "a", "a");
   testReversingSentence("sentence contain single letter words ", "a b", "b a");
   testReversingSentence("sentence contain two letters each", "ab cd", "cd ab");
-
+  testReversingSentence("sentence contain more than two letters", "you to welcome hearty", "hearty welcome to you");
 
 }
 
