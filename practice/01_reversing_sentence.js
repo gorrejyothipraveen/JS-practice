@@ -69,6 +69,7 @@ function testReversingSentence(description, sentence, expected) {
 
 function testAll() {
 
+  testReversingSentence("empty sentence ", "", "");
   testReversingSentence("single word ", "a", "a");
   testReversingSentence("sentence contain single letter words ", "a b", "b a");
   testReversingSentence("sentence contain two letters each", "ab cd", "cd ab");
