@@ -1,15 +1,14 @@
 function extratingWord(index, end, sentence, word) {
 
   if (index > end) {
-    return word + " ";
+    return word;
   } 
 
   if (sentence[index] === " ") {
     index = index + 1;
   }
-
+  
   word = word + sentence[index];
-
   return extratingWord(index + 1, end, sentence, word);
 }
 
@@ -23,7 +22,7 @@ function reversedString(sentence , index, reversedSentence, end) {
     let word = '';
     word = extratingWord(index, end, sentence, word);
     end = index - 1;
-    reversedSentence = reversedSentence + word; 
+    reversedSentence = (end < 0) ? reversedSentence + word : reversedSentence + word + " ";
   }
 
   return reversedString(sentence, index - 1, reversedSentence, end);
@@ -71,8 +70,8 @@ function testReversingSentence(description, sentence, expected) {
 function testAll() {
 
   testReversingSentence("single word ", "a", "a");
-  testReversingSentence("single word ", "a b", "b a");
-  testReversingSentence("single word ", "ab cd", "cd ab");
+  testReversingSentence("sentence contain single letter words ", "a b", "b a");
+  testReversingSentence("sentence contain two letters each", "ab cd", "cd ab");
 
 
 }
