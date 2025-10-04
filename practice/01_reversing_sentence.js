@@ -2,17 +2,13 @@ function extratingWord(index, end, sentence, word) {
 
   if (index > end) {
     return word + " ";
-  }
+  } 
 
-  if (index === " ") {
+  if (sentence[index] === " ") {
     index = index + 1;
   }
 
-  if (end >= index) {
-    word = word + sentence[index];
-    // console.log(word);
-    
-  }
+  word = word + sentence[index];
 
   return extratingWord(index + 1, end, sentence, word);
 }
@@ -27,9 +23,7 @@ function reversedString(sentence , index, reversedSentence, end) {
     let word = '';
     word = extratingWord(index, end, sentence, word);
     end = index - 1;
-    reversedSentence = reversedSentence + word;
-    console.log(reversedSentence);
-    
+    reversedSentence = reversedSentence + word; 
   }
 
   return reversedString(sentence, index - 1, reversedSentence, end);
@@ -53,6 +47,8 @@ function failingTestCase(resultSymbol, sentence, actual, expected) {
   const inputSegment =`  input    : ${sentence} \n`;
   const expectedSection = `    Expected : ${expected} \n`
   const actualSection = `    actual   : ${actual}`
+  console.log(expected.length,actual.length);
+  
   message(resultSymbol, inputSegment, expectedSection, actualSection);
 }
 
@@ -63,7 +59,7 @@ function symbol(actual, expected) {
 
 function testReversingSentence(description, sentence, expected) {
   const actual = reversingSentence(sentence);
-  const resultSymbol = symbol(actual, expected + " ");
+  const resultSymbol = symbol(actual, expected);
   
   if (resultSymbol === "✅") {
     return workingTestCase(resultSymbol, description);
@@ -76,6 +72,9 @@ function testAll() {
 
   testReversingSentence("single word ", "a", "a");
   testReversingSentence("single word ", "a b", "b a");
+  testReversingSentence("single word ", "ab cd", "cd ab");
+
+
 }
 
 testAll();
