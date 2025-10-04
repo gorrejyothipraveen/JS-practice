@@ -1,18 +1,42 @@
-function reversedString(sentence , index, reversedSentence) {
+function extratingWord(index, end, sentence, word) {
+
+  if (index > end) {
+    return word + " ";
+  }
+
+  if (index === " ") {
+    index = index + 1;
+  }
+
+  if (end >= index) {
+    word = word + sentence[index];
+    // console.log(word);
+    
+  }
+
+  return extratingWord(index + 1, end, sentence, word);
+}
+
+function reversedString(sentence , index, reversedSentence, end) {
 
   if (index < 0) {
     return reversedSentence;
   }
 
-  if (index >= 0) {
-    reversedSentence = reversedSentence + sentence[index];
+  if (sentence[index] === ' ' || index === 0) {
+    let word = '';
+    word = extratingWord(index, end, sentence, word);
+    end = index - 1;
+    reversedSentence = reversedSentence + word;
+    console.log(reversedSentence);
+    
   }
 
-  return reversedString(sentence, index - 1, reversedSentence);
+  return reversedString(sentence, index - 1, reversedSentence, end);
 }
 
 function reversingSentence(sentence) {
-  return reversedString(sentence, sentence.length - 1, '');
+  return reversedString(sentence, sentence.length - 1, '', sentence.length - 1);
 }
 
 function workingTestCase(resultSymbol, description) {
@@ -39,7 +63,7 @@ function symbol(actual, expected) {
 
 function testReversingSentence(description, sentence, expected) {
   const actual = reversingSentence(sentence);
-  const resultSymbol = symbol(actual, expected);
+  const resultSymbol = symbol(actual, expected + " ");
   
   if (resultSymbol === "✅") {
     return workingTestCase(resultSymbol, description);
