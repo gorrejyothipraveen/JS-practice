@@ -1,5 +1,32 @@
+function findingNextLetterIndex(string, character, index) {
+  if (index === string.length) {
+    return string.length;
+  }
+
+  if (character === string[index + 1]) {
+    return findingNextLetterIndex(string, character, index + 1);
+  }
+
+  return index;
+}
+
+function removeRedundentLetters(string, index, duplicateFreeString) {
+
+  if (index === string.length) {
+    return duplicateFreeString;
+  }
+
+  duplicateFreeString = duplicateFreeString + string[index];
+
+  if (string[index] === string[index + 1]) {
+    index = findingNextLetterIndex(string, string[index], index + 1);
+  }
+
+  return removeRedundentLetters(string, index + 1, duplicateFreeString);
+}
+
 function removingDuplication(string) {
-  return string;
+  return removeRedundentLetters(string, 0, '');
 }
 
 function workingTestCase(resultSymbol, description) {
@@ -37,7 +64,16 @@ function testRemovingDuplication(description, string, expected) {
 
 function testAll() {
 
-  testRemovingDuplication("sentence contain single letter ", "a", "a");
+  testRemovingDuplication("string does not contain any letters ", "", "");
+  testRemovingDuplication("string contain single letter ", "a", "a");
+  testRemovingDuplication("string contain two same letters ", "aa", "a");
+  testRemovingDuplication("string contain three same letters ", "aaa", "a");
+  testRemovingDuplication("string contain four same letters ", "aaaa", "a");
+  testRemovingDuplication("string contain two different letters and repeating twice", "aabb", "ab");
+  testRemovingDuplication("sentence contain three different letters and repeating thrice", "aaabbbccc", "abc");
+  testRemovingDuplication("sentence does not contain any duplicate letters", "abcdefg", "abcdefg");
+
+
 
 }
 
