@@ -1,5 +1,5 @@
 function isVowel(letter, index) {
-  const vowels = "aeiou";
+  const vowels = "aeiouAEIOU";
 
   if (index === vowels.length) {
     return false;
@@ -12,7 +12,7 @@ function isVowel(letter, index) {
   return isVowel(letter, index + 1);
 }
 
-function extractingVowelsFromSentence(sentence, index, consonantString){
+function removeVowelsFromSentence(sentence, index, consonantString){
 
   if (index === sentence.length) {
     return consonantString;
@@ -22,11 +22,11 @@ function extractingVowelsFromSentence(sentence, index, consonantString){
     consonantString = consonantString + sentence[index];
   }
 
-  return extractingVowelsFromSentence(sentence, index + 1, consonantString);
+  return removeVowelsFromSentence(sentence, index + 1, consonantString);
 }
 
 function removingVowels(sentence) {
-  return extractingVowelsFromSentence(sentence, 0, '');
+  return removeVowelsFromSentence(sentence, 0, '');
 }
 
 function workingTestCase(resultSymbol, description) {
@@ -71,6 +71,8 @@ function testAll() {
   testRemovingVowels("sentence contain 4 vowels", "apple fruit", 'ppl frt');
   testRemovingVowels("sentence contain 5 vowels", "phone mobile", 'phn mbl');
   testRemovingVowels("sentence contain only vowels", "aeiou", '');
+  testRemovingVowels("sentence contain uppercase vowels", "Aeiou", '');
+  testRemovingVowels("sentence contain only vowels", "hELLoWOrld", 'hLLWrld');
 
 }
 
