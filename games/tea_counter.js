@@ -10,6 +10,7 @@ function displayOrderedItems(orderedItems) {
     console.log(`${orderedItems[iterator]} : ${orderedItems[iterator + 1]}`);
   }
   console.log("\n after sometime collect your order\n");
+  teaCounter();
 }
 
 function maxOrderLimitReached(itemCount, itemAmount, item, orderedItems) {
@@ -79,6 +80,11 @@ function validateId(id) {
 function EmployeeId() {
   const EmpId = prompt("\nenter your id : \n\n\t");
   const yourEmpId = parseInt(EmpId);
+  
+  if (EmpId === 'EOD') {
+    return;
+  }
+
   if (!validateId(yourEmpId)) {
     console.log('this type of id does not exist ! retry...');
     EmployeeId();
