@@ -18,30 +18,55 @@ function playWordGuess(guess, clues, chances, clueIndex) {
 }
 
 function checkPresenceOfLetters(yourGuess) {
+  const WORD = 'apple';
   for (let index = 0; index < WORD.length; index++) {
     if (yourGuess.includes(WORD[index])) {
       return true;
     }
   }
 }
-//pine apple
+
+function checkIndexes(position, element) {
+  const WORD = 'apple';
+  return WORD.indexOf(element) === position; 
+}
+
 function aboutYourGuess(guess) {
   let guessedWord = '';
-  for (let index = 0; index < WORD.length; index++) {
-    if (guess.includes(WORD[index])) {
-      guessedWord = guessedWord + WORD[index];
+  const WORD = 'apple';
+  const MismatedElements = [];
+  for (let index = 0; index < guess.length; index++) {
+    if (WORD.includes(guess[index])) {
+      if(checkIndexes(index, guess[index])) {
+        guessedWord = guessedWord + guess[index];
+      } else {
+        guessedWord = guessedWord + '_';
+        MismatedElements.push(guess[index]);
+      }
     } else {
       guessedWord = guessedWord + '_';
     }
   }
-  return guessedWord;
+
+  if (MismatedElements.length) {
+    console.log("this elements are present in your guess but positions are different " + MismatedElements);
+  }
+
+  if (checkPresenceOfLetters(guessedWord)) {
+    return guessedWord;
+  }
+
+  return [];
 }
 
 function confirmation(clues, chances, index) { 
   if (chances > 0) {
     const guess = prompt("enter your guess :  ");
     if (checkPresenceOfLetters(guess) && chances > 1) {
-      console.log(aboutYourGuess(guess));
+      const positionsOfWord = aboutYourGuess(guess);
+      if (positionsOfWord.length) {
+        console.log(positionsOfWord);
+      }
     }
     playWordGuess(guess, clues, chances, index);
     return;
