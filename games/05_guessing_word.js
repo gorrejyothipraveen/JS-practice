@@ -27,37 +27,44 @@ function checkPresenceOfLetters(yourGuess) {
 }
 
 function checkIndexes(position, element) {
-  const WORD = 'apple';
-  return WORD.indexOf(element) === position; 
+  for (let index = 0; index < WORD.length; index++) {
+    if (WORD[index] === element && position === index) {
+      return true;
+    }
+  }
+  return false; 
 }
 
+function findingPosition(index, letter, guessedWord, mismatedElements) {
+  if(checkIndexes(index, letter)) {
+    return guessedWord + letter;
+  } 
+
+  if (!mismatedElements.includes(letter)) {
+    mismatedElements.push(letter);
+  }
+
+  return guessedWord + '_';
+}
 
 
 function aboutYourGuess(guess) {
   let guessedWord = '';
   const mismatedElements = [];
-  const WORD = 'apple'
   for (let index = 0; index < guess.length; index++) {
     if (WORD.includes(guess[index])) {
-      if(checkIndexes(index, guess[index])) {
-        guessedWord = guessedWord + guess[index];
-      } else {
-        if (!mismatedElements.includes(guess[index])) {
-          mismatedElements.push(guess[index]);
-        }
-        guessedWord = guessedWord + '_';
-      }
+      guessedWord = findingPosition(index, guess[index], guessedWord, mismatedElements);
     } else {
       guessedWord = guessedWord + '_';
     }
   }
 
   if (mismatedElements.length) {
-    console.log("this elements are present in your guess but positions are different " + mismatedElements);
+    console.log("\nthis elements are exist ,but positions are different " + mismatedElements);
   }
 
   if (checkPresenceOfLetters(guessedWord)) {
-    console.log(guessedWord.slice(0,WORD.length));
+    console.log('\n' + guessedWord.slice(0,WORD.length));
   }
 
   return;
@@ -87,6 +94,7 @@ function guessingWord() {
     'this fruit contain 0% fat and no cholesterol'];
 
   const chances = WORD.length;
+  console.log("the word contain : " + WORD.length + " letters");
   confirmation(clues, chances, 0, 0);
 }
 
