@@ -53,7 +53,7 @@ function aboutYourGuess(guess) {
   }
 
   if (checkPresenceOfLetters(guessedWord)) {
-    console.log(guessedWord);
+    console.log(guessedWord.slice(0,WORD.length));
   }
 
   return;
