@@ -53,26 +53,23 @@ function aboutYourGuess(guess) {
   }
 
   if (checkPresenceOfLetters(guessedWord)) {
-    return guessedWord;
+    console.log(guessedWord);
   }
 
-  return [];
+  return;
 }
 
 function confirmation(clues, chances, index) { 
-  if (chances > 0) {
-    const guess = prompt("enter your guess :  ");
-    if (checkPresenceOfLetters(guess) && chances > 1) {
-      const positionsOfWord = aboutYourGuess(guess);
-      if (positionsOfWord.length) {
-        console.log(positionsOfWord);
-      }
-    }
-    playWordGuess(guess, clues, chances, index);
+  if (chances === 0) {
+    console.log('\nbadluck chances are completed,you lost the game \n\nthe Word is : ',WORD + '\n');
     return;
   }
-
-  console.log('\nbadluck chances are completed,you lost the game \n\nthe Word is : ',WORD + '\n');
+  
+  const guess = prompt("enter your guess :  ");
+  if (checkPresenceOfLetters(guess)) {
+    aboutYourGuess(guess);
+  }
+  playWordGuess(guess, clues, chances, index);
   return;
 }
 
