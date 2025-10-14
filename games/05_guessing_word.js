@@ -31,25 +31,29 @@ function checkIndexes(position, element) {
   return WORD.indexOf(element) === position; 
 }
 
+
+
 function aboutYourGuess(guess) {
   let guessedWord = '';
-  const WORD = 'apple';
-  const MismatedElements = [];
+  const mismatedElements = [];
+  const WORD = 'apple'
   for (let index = 0; index < guess.length; index++) {
     if (WORD.includes(guess[index])) {
       if(checkIndexes(index, guess[index])) {
         guessedWord = guessedWord + guess[index];
       } else {
+        if (!mismatedElements.includes(guess[index])) {
+          mismatedElements.push(guess[index]);
+        }
         guessedWord = guessedWord + '_';
-        MismatedElements.push(guess[index]);
       }
     } else {
       guessedWord = guessedWord + '_';
     }
   }
 
-  if (MismatedElements.length) {
-    console.log("this elements are present in your guess but positions are different " + MismatedElements);
+  if (mismatedElements.length) {
+    console.log("this elements are present in your guess but positions are different " + mismatedElements);
   }
 
   if (checkPresenceOfLetters(guessedWord)) {
@@ -69,11 +73,13 @@ function confirmation(clues, chances, index) {
   if (checkPresenceOfLetters(guess)) {
     aboutYourGuess(guess);
   }
+
   playWordGuess(guess, clues, chances, index);
   return;
 }
 
 function guessingWord() {
+
   const clues = ['this is fruit',
     'I belongs to rose family', 
     'it takes the energy of 50 leaves to produce one fruit',
