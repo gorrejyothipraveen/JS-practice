@@ -1,5 +1,9 @@
+const STARTLIST = 'l';
+const ENDLISTANDINTEGER = 'e';
+const STARTINTEGER = 'i';
+
 function encodeDigitalData(integer) {
-  const encodedInteger = 'i' + integer + 'e';
+  const encodedInteger = STARTINTEGER + integer + ENDLISTANDINTEGER;
   return encodedInteger;
 }
 
@@ -15,7 +19,7 @@ function encodeArrayData(array) {
     serializeArray = serializeArray + encode(array[iterator]);
     
   }
-  return 'l' + serializeArray + 'e';
+  return STARTLIST + serializeArray + ENDLISTANDINTEGER;
 }
 
 function encode(data) { 
@@ -30,22 +34,19 @@ function encode(data) {
 }
 
 function decodeInteger(data) {
-  let deserializeInteger = 0;
-  if (data[1] === '0') {
+  if (data[1] === '0' && data.length > 2) {
     return 'invalid';
   }
-  
-  for (let iterator = 1; data[iterator] !== 'e'; iterator++) {
-    deserializeInteger = deserializeInteger * 10 + parseInt(data[iterator]);
-  }
-
-  return deserializeInteger;
+  const deserializeInteger = data.slice(1, data.indexOf('e'));
+  return parseInt(deserializeInteger);
 }
 
 function decode(data) {
-  if (data[0] === 'i') {
+  if (data[0] === STARTINTEGER) {
     return decodeInteger(data);
   }
+
+  // return decodeString(data);
 }
 
 function testData(input, actual, expected, description) {
@@ -90,6 +91,10 @@ function testDeserializeIntegerData() {
   testData('i01e', decode('i01e'), 'invalid', 'including zeros before integer');
   
 }
+
+// function testDeserializeString() {
+//   testData('1:hello', )
+// }
 
 function testAll() {
   // testSerializeIntegerData();
