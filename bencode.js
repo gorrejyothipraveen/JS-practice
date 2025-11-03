@@ -29,14 +29,14 @@ function testData(input, expected, description) {
   }
 }
 
-function testIntegerNumbers() {
+function testIntegerData() {
   testData(1, 'i1e', 'single integer number');
   testData(12, 'i12e', 'two digit integer number');
   testData(123, 'i123e', 'three digit integer number');
   testData(0, 'i0e', 'zero');
 }
 
-function testStrings() {
+function testTextData() {
   testData('a', '1:a', 'single letter');
   testData('ab', '2:ab', '2 letters word');
   testData('abc', '3:abc', '3 letters word');
@@ -46,9 +46,14 @@ function testStrings() {
 
 }
 
+function testArrayData() {
+  testData([1], 'li1ee', 'list contain integer');
+}
+
 function testAll() {
-  // testIntegerNumbers();
-  testStrings();
+  // testIntegerData();
+  // testTextData();
+  testArrayData();
 }
 
 testAll();
