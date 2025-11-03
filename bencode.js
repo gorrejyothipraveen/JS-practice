@@ -10,5 +10,5 @@ function encode(data) {
   }
 }
 
-const data = 10348;
+const data = 'hello';
 console.log(encode(data));
