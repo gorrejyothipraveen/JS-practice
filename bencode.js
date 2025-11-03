@@ -59,6 +59,8 @@ function testTextData() {
 
 function testArrayData() {
   testData([1], 'li1ee', 'list contain integer');
+  testData([1, 'a'], 'li1e1:ae', 'list contain integer, string');
+
 }
 
 function testAll() {
