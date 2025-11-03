@@ -1,6 +1,14 @@
-function encode(digit) {
-  const encodeData = 'i' + digit + 'e';
-  return encodeData;
+function encodeDigitalData(integer) {
+  const encodedData = 'i' + integer + 'e';
+  return encodedData;
 }
 
-console.log(encode(1));
+function encode(data) { 
+  switch(typeof data) {
+    case 'number':
+      return encodeDigitalData(data);
+  }
+}
+
+const data = 10348;
+console.log(encode(data));
