@@ -10,7 +10,11 @@ function encodeStringData(string) {
 }
 
 function encodeArrayData(array) {
-  const encodedData = encode(array[0]);
+  let encodedData = '';
+  for (let iterator = 0; iterator < array.length; iterator++) {
+    encodedData = encodedData + encode(array[iterator]);
+    
+  }
   return 'l' + encodedData + 'e';
 }
 
