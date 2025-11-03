@@ -9,12 +9,19 @@ function encodeStringData(string) {
   return encodedString;
 }
 
+function encodeArrayData(array) {
+  const encodedData = encode(array[0]);
+  return 'l' + encodedData + 'e';
+}
+
 function encode(data) { 
   switch(typeof data) {
     case 'number':
       return encodeDigitalData(data);
     case 'string':
       return encodeStringData(data);
+    case 'object':
+      return encodeArrayData(data);
   }
 }
 
