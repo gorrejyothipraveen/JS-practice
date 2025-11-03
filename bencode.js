@@ -41,12 +41,20 @@ function decodeInteger(data) {
   return parseInt(deserializeInteger);
 }
 
+function decodeString(data) {
+  const IndexOfColon = data.indexOf(':');
+  const lengthOfString = parseInt(data);
+  const deserializedString = data.slice(IndexOfColon + 1, IndexOfColon + lengthOfString + 1);
+  return deserializedString;
+}
+
 function decode(data) {
   if (data[0] === STARTINTEGER) {
+    console.log(data);
     return decodeInteger(data);
   }
 
-  // return decodeString(data);
+  return decodeString(data);
 }
 
 function testData(input, actual, expected, description) {
@@ -92,15 +100,22 @@ function testDeserializeIntegerData() {
   
 }
 
-// function testDeserializeString() {
-//   testData('1:hello', )
+function testDeserializeString() {
+  testData('1:a', decode('1:a'), 'a', 'single letter string');
+  testData('2:ab', decode('2:ab'), 'ab', 'two letters string');
+  testData('3:abc', decode('3:abc'), 'abc', 'three letters string');
+}
+
+// function testDeserializeArray() {
+//   testData('li1ee', decode('li1ee'), [1], 'list contain integer');
 // }
 
 function testAll() {
   // testSerializeIntegerData();
   // testSerializeTextData();
   // testSerializeArrayData();
-  testDeserializeIntegerData();
+  // testDeserializeIntegerData();
+  testDeserializeString();
 }
 
 testAll();
