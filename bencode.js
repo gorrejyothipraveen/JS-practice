@@ -10,12 +10,12 @@ function encodeStringData(string) {
 }
 
 function encodeArrayData(array) {
-  let encodedData = '';
+  let serializeArray = '';
   for (let iterator = 0; iterator < array.length; iterator++) {
-    encodedData = encodedData + encode(array[iterator]);
+    serializeArray = serializeArray + encode(array[iterator]);
     
   }
-  return 'l' + encodedData + 'e';
+  return 'l' + serializeArray + 'e';
 }
 
 function encode(data) { 
@@ -60,6 +60,7 @@ function testTextData() {
 function testArrayData() {
   testData([1], 'li1ee', 'list contain integer');
   testData([1, 'a'], 'li1e1:ae', 'list contain integer, string');
+  testData([1, 'a', [1]], 'li1e1:ali1eee', 'list contain integer, string and nestedarray');
 
 }
 
