@@ -38,6 +38,12 @@ function testIntegerNumbers() {
 
 function testStrings() {
   testData('a', '1:a', 'single letter');
+  testData('ab', '2:ab', '2 letters word');
+  testData('abc', '3:abc', '3 letters word');
+  testData('', '0:', 'empty word');
+  testData('hello world', '11:hello world', '11 letters word');
+  testData('hello@#!world', '13:hello@#!world', '13 letters word including special characters');
+
 }
 
 function testAll() {
